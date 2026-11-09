@@ -9,6 +9,7 @@ import {
   FaUserCircle,
 } from 'react-icons/fa';
 import NotificationDropdown from './NotificationDropdown';
+import InstallAppButton from './InstallAppButton';
 
 export default function Topbar({ onOpenTimer, onNavigateTab, collapsed }) {
   const { user } = useAuth();
@@ -62,6 +63,9 @@ export default function Topbar({ onOpenTimer, onNavigateTab, collapsed }) {
 
         {/* Right Side: Quick Timer + Notification + Theme Toggle + User */}
         <div className="d-flex align-items-center gap-2">
+          {/* Install Mobile PWA Button */}
+          <InstallAppButton className="d-none d-md-flex" />
+
           {/* Quick Focus Button */}
           <button
             onClick={onOpenTimer}

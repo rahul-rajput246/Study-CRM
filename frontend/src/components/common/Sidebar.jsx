@@ -18,6 +18,7 @@ import {
 } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
 import { useNotifications } from '../../context/NotificationContext';
+import InstallAppButton from './InstallAppButton';
 
 export default function Sidebar({ activeTab, setActiveTab, collapsed, setCollapsed }) {
   const { user, logout } = useAuth();
@@ -114,8 +115,15 @@ export default function Sidebar({ activeTab, setActiveTab, collapsed, setCollaps
         })}
       </ul>
 
+      {/* Mobile App Install Button */}
+      {!collapsed && (
+        <div className="mt-2 mb-1">
+          <InstallAppButton className="w-100 justify-content-center" variant="outline-primary" size="sm" />
+        </div>
+      )}
+
       {/* Footer User Info & Logout */}
-      <div className="border-top pt-3 mt-3">
+      <div className="border-top pt-3 mt-2">
         {!collapsed ? (
           <div className="d-flex align-items-center justify-content-between">
             <div className="d-flex align-items-center gap-2 overflow-hidden me-2">
