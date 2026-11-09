@@ -150,3 +150,4 @@ export default function InstallAppButton({ className = '', variant = 'outline-pr
     </>
   );
 }
+
