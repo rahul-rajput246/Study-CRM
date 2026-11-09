@@ -31,7 +31,8 @@ start http://localhost:5173
 
 echo.
 echo ============================================================
-echo   StudyOS is running at: http://localhost:5173
+echo   Desktop URL:           http://localhost:5173
+echo   Mobile Phone (Wi-Fi):  http://10.97.162.53:5173
 echo   Seeded Account:        engineer@studyos.local
 echo   Default Password:      password123
 echo ============================================================
