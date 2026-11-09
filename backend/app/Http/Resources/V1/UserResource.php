@@ -17,6 +17,16 @@ class UserResource extends JsonResource
             'daily_goal_minutes' => $this->daily_goal_minutes,
             'target_role' => $this->target_role,
             'avatar' => $this->avatar,
+            'bio' => $this->bio,
+            'custom_settings' => $this->custom_settings ?: [
+                'pomodoro_minutes' => 25,
+                'short_break_minutes' => 5,
+                'long_break_minutes' => 15,
+                'sound_alerts' => true,
+                'auto_start_breaks' => false,
+                'sm2_default_ease' => 2.50,
+                'sm2_daily_limit' => 20,
+            ],
             'created_at' => $this->created_at?->toIso8601String(),
         ];
     }

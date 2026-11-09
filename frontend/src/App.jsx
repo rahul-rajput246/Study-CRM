@@ -15,6 +15,7 @@ import ProblemsPage from './pages/ProblemsPage';
 import TimerPage from './pages/TimerPage';
 import NotesJournalPage from './pages/NotesJournalPage';
 import ReportsPage from './pages/ReportsPage';
+import SettingsPage from './pages/SettingsPage';
 import { FaTools } from 'react-icons/fa';
 
 function MainRouter() {
@@ -53,6 +54,7 @@ function MainRouter() {
       {activeTab === 'timer' && <TimerPage />}
       {activeTab === 'notes' && <NotesJournalPage />}
       {activeTab === 'reports' && <ReportsPage />}
+      {activeTab === 'settings' && <SettingsPage />}
 
       {/* Placeholders for upcoming phases */}
       {activeTab !== 'dashboard' &&
@@ -64,7 +66,8 @@ function MainRouter() {
         activeTab !== 'problems' &&
         activeTab !== 'timer' &&
         activeTab !== 'notes' &&
-        activeTab !== 'reports' && (
+        activeTab !== 'reports' &&
+        activeTab !== 'settings' && (
         <div className="card text-center p-5">
           <div className="d-inline-flex p-3 rounded-circle bg-primary bg-opacity-10 text-primary mx-auto mb-3">
             <span className="fs-2">🚀</span>

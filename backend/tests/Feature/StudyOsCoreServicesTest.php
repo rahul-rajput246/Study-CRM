@@ -219,4 +219,71 @@ class StudyOsCoreServicesTest extends TestCase
         // Benchmark requires >= 70% for elite, 67% is in proficient
         $this->assertEquals('proficient', $analytics['benchmark']['tier']);
     }
+
+    /**
+     * Test Settings Module API Endpoints.
+     */
+    public function test_settings_module_endpoints(): void
+    {
+        $user = User::factory()->create([
+            'password' => bcrypt('oldpassword123'),
+        ]);
+
+        // 1. Get settings
+        $response = $this->actingAs($user)->getJson('/api/v1/settings');
+        $response->assertStatus(200)
+            ->assertJsonStructure([
+                'user' => ['id', 'name', 'email', 'timezone', 'daily_goal_minutes', 'target_role'],
+                'notification_preferences',
+                'workspace_stats',
+                'system',
+            ]);
+
+        // 2. Update Profile
+        $updateRes = $this->actingAs($user)->putJson('/api/v1/settings/profile', [
+            'name' => 'Ashish Senior',
+            'target_role' => 'Principal Full-Stack Engineer (₹50 LPA+)',
+            'daily_goal_minutes' => 300,
+            'timezone' => 'Asia/Kolkata',
+            'bio' => 'Focusing on distributed systems and advanced DSA.',
+        ]);
+        $updateRes->assertStatus(200);
+        $this->assertEquals('Ashish Senior', $user->fresh()->name);
+
+        // 3. Update Study Preferences
+        $prefRes = $this->actingAs($user)->putJson('/api/v1/settings/study-preferences', [
+            'pomodoro_minutes' => 50,
+            'short_break_minutes' => 10,
+            'long_break_minutes' => 20,
+            'sound_alerts' => true,
+            'auto_start_breaks' => true,
+            'sm2_default_ease' => 2.60,
+            'sm2_daily_limit' => 25,
+        ]);
+        $prefRes->assertStatus(200);
+        $this->assertEquals(50, $user->fresh()->custom_settings['pomodoro_minutes']);
+
+        // 4. Update Password
+        $pwdRes = $this->actingAs($user)->putJson('/api/v1/settings/password', [
+            'current_password' => 'oldpassword123',
+            'password' => 'newpassword123',
+            'password_confirmation' => 'newpassword123',
+        ]);
+        $pwdRes->assertStatus(200);
+
+        // 5. Export Data
+        $exportRes = $this->actingAs($user)->getJson('/api/v1/settings/export');
+        $exportRes->assertStatus(200)
+            ->assertJsonStructure([
+                'meta',
+                'user',
+                'roadmaps',
+                'schedules',
+                'sessions',
+                'revisions',
+                'problems',
+                'notes',
+                'journals',
+            ]);
+    }
 }

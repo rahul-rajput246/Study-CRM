@@ -59,5 +59,12 @@ export const API_ROUTES = {
     PREFERENCES: '/notifications/preferences',
     PUSH_SUBSCRIBE: '/notifications/push-subscribe',
   },
+  SETTINGS: {
+    BASE: '/settings',
+    PROFILE: '/settings/profile',
+    STUDY_PREFERENCES: '/settings/study-preferences',
+    PASSWORD: '/settings/password',
+    EXPORT: '/settings/export',
+  },
 };
 

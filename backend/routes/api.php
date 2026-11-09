@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\V1\ReportController;
 use App\Http\Controllers\Api\V1\RevisionController;
 use App\Http\Controllers\Api\V1\RoadmapController;
 use App\Http\Controllers\Api\V1\ScheduleController;
+use App\Http\Controllers\Api\V1\SettingController;
 use App\Http\Controllers\Api\V1\StudyNoteController;
 use App\Http\Controllers\Api\V1\StudySessionController;
 use App\Http\Controllers\Api\V1\SubtopicController;
@@ -146,6 +147,15 @@ Route::prefix('v1')->group(function () {
         // Quantitative Analytics & Performance Reports
         Route::prefix('reports')->group(function () {
             Route::get('/comprehensive', [ReportController::class, 'comprehensive']);
+        });
+
+        // Settings, Profile & Preferences
+        Route::prefix('settings')->group(function () {
+            Route::get('/', [SettingController::class, 'index']);
+            Route::put('/profile', [SettingController::class, 'updateProfile']);
+            Route::put('/study-preferences', [SettingController::class, 'updateStudyPreferences']);
+            Route::put('/password', [SettingController::class, 'updatePassword']);
+            Route::get('/export', [SettingController::class, 'exportData']);
         });
     });
 });

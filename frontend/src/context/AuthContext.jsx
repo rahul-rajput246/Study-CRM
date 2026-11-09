@@ -109,6 +109,11 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const updateUser = (updatedUser) => {
+    setUser(updatedUser);
+    localStorage.setItem('studyos_user', JSON.stringify(updatedUser));
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -120,6 +125,7 @@ export function AuthProvider({ children }) {
         login,
         register,
         logout,
+        updateUser,
         refreshUser: fetchCurrentUser,
       }}
     >

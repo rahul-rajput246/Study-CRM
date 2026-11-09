@@ -23,6 +23,8 @@ class User extends Authenticatable
         'daily_goal_minutes',
         'target_role',
         'avatar',
+        'bio',
+        'custom_settings',
     ];
 
     protected $hidden = [
@@ -36,6 +38,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'daily_goal_minutes' => 'integer',
+            'custom_settings' => 'array',
         ];
     }
 
