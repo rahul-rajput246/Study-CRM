@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             StarterRoadmapSeeder::class,
+            UpdateRevisionSeeder::class,
+            ProblemLogSeeder::class,
         ]);
     }
 }
