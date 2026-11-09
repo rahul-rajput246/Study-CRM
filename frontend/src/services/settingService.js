@@ -60,3 +60,4 @@ export const settingService = {
     return res.data;
   },
 };
+

@@ -16,6 +16,7 @@ import TimerPage from './pages/TimerPage';
 import NotesJournalPage from './pages/NotesJournalPage';
 import ReportsPage from './pages/ReportsPage';
 import SettingsPage from './pages/SettingsPage';
+import TasksPage from './pages/TasksPage';
 import { FaTools } from 'react-icons/fa';
 
 function MainRouter() {
@@ -48,6 +49,7 @@ function MainRouter() {
       {activeTab === 'roadmap' && <RoadmapPage />}
       {activeTab === 'schedule' && <SchedulePage defaultView="day" />}
       {activeTab === 'calendar' && <SchedulePage defaultView="week" />}
+      {activeTab === 'tasks' && <TasksPage onOpenTimer={() => setActiveTab('timer')} />}
       {activeTab === 'notifications' && <NotificationsPage onNavigateTab={setActiveTab} />}
       {activeTab === 'revision' && <RevisionPage />}
       {activeTab === 'problems' && <ProblemsPage />}
@@ -61,6 +63,7 @@ function MainRouter() {
         activeTab !== 'roadmap' &&
         activeTab !== 'schedule' &&
         activeTab !== 'calendar' &&
+        activeTab !== 'tasks' &&
         activeTab !== 'notifications' &&
         activeTab !== 'revision' &&
         activeTab !== 'problems' &&
